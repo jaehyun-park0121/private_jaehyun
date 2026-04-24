@@ -1,0 +1,30 @@
+site:
+  name: "KIPRIS_Patent"
+  description: "특허정보넷 키프리스 (특허/실용신안)"
+  url: "https://www.kipris.or.kr"
+
+crawling:
+  # [Phase 1] 검색 목록 페이지에서 각 특허의 상세페이지로 넘어가는 링크/버튼의 위치
+  list_item_selector: "article.result-item"
+  detail_link_selector: "h1.title button.link.under"
+  
+  # [Phase 2] 상세 페이지 내부에서 최종 PDF 전문을 다운로드하는 버튼의 위치
+  pdf_download_selector: "a.btn-download-pdf"
+  
+  # 키프리스와 같이 공공데이터 구조가 확실한 경우 라이선스 로고 검사 생략
+  license_selector: null
+  
+  # KIPRIS 전용 특수 모드: 상세 페이지 URL이 별도로 없는 SPA(Single Page) 구조이므로 
+  # 목록 화면에서 바로 아코디언을 펼치고 PDF를 다운받는 엔진을 활성화합니다.
+  download_method: "spa_inline_download"
+  
+  # [검색 자동화] 목록 페이지에 진입하기 전 지정된 검색어를 입력하고 엔터를 치는 사전 작업
+  search_actions:
+    - type: "fill"
+      selector: "textarea#queryText"
+      value: "IPC=[C08]"
+    - type: "press"
+      selector: "textarea#queryText"
+      key: "Enter"
+    - type: "wait_for_selector"
+      selector: "article.result-item" # 검색 결과가 뜰 때까지 대기

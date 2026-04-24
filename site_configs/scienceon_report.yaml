@@ -1,0 +1,93 @@
+site:
+  name: "ScienceON_Report"
+  description: "KISTI ScienceON 보고서 (차트/표 포함 PDF 수집용)"
+  url: "https://scienceon.kisti.re.kr"
+
+# ============================================================
+# [검색] 보고서 탭 검색 → 결과 목록 수집
+# ============================================================
+search:
+  enabled: true
+  mode: "url"
+  # {query}는 URL-encoded, {query_raw}는 원문 그대로 치환됨
+  url_template: "https://scienceon.kisti.re.kr/srch/selectPORSrchReport.do?cn=&dbt=RPT&WT.mc_id=&query={query}"
+  query: ""  # CLI/GUI에서 동적으로 주입 (예: "인공지능", "탄소중립")
+  wait_after_ms: 3000
+
+# ============================================================
+# [Phase 1] 검색 결과 목록 → 개별 보고서 상세 링크 수집
+# ============================================================
+crawling:
+  render: true  # Playwright 동적 렌더링 필수 (AJAX 결과)
+
+  # 검색 결과 리스트의 개별 항목
+  list_item_selector: ".lst-type-report li, .srch-list li, .alist-con"
+
+  # 각 항목 내 상세페이지 링크
+  detail_link_selector: "a.title, a[href*='selectPORSrchReport.do?cn=']"
+
+  # 상세 페이지 내 PDF 다운로드 버튼
+  # ScienceON은 JS 함수(rptOrgDown)로 다운로드하므로 onclick 속성을 가진 버튼을 타겟
+  pdf_download_selector: "a[onclick*='rptOrgDown'], button[onclick*='rptOrgDown'], a[onclick*='fncOrgDown'], a.btn-down, .btn-area a[href$='.pdf']"
+
+  # 다운로드 방식: JS 함수 트리거 (직접 href가 아님)
+  download_method: "js_click"
+
+  # 공공데이터 → 라이선스 검사 생략
+  license_selector: null
+
+# ============================================================
+# [페이지네이션] AJAX 기반 페이지 이동
+# ============================================================
+pagination:
+  enabled: true
+  type: "button"
+  # ScienceON 페이지 이동 버튼
+  next_button_selector: ".pagination .p-next, .paginate .next, a[onclick*='pageNo']"
+  wait_after_click_ms: 2000
+  max_pages: 10  # 기본값, CLI에서 오버라이드 가능
+
+# ============================================================
+# [콘텐츠] 상세 페이지에서 추출할 요소
+# ============================================================
+content:
+  article_links:
+    selectors:
+      - "a[href*='selectPORSrchReport.do?cn=']"
+      - "a[href*='selectPORSrchArticle.do?cn=']"
+    url_filter:
+      include_patterns:
+        - "cn=\\w+"  # cn(등록번호) 파라미터가 있는 URL만
+      exclude_patterns:
+        - "javascript:"
+        - "#none"
+
+  detail:
+    title_selector: ".view-title h3, .thesis-title, .detail-title"
+    text_selectors:
+      - ".view-con"
+      - ".detail-content"
+      - ".abstract-con"
+    image_selectors:
+      - ".view-con img"
+      - ".detail-content img"
+
+# ============================================================
+# [PDF 필터링] 다운로드 후 차트/표 판별 기준
+# ============================================================
+pdf_filter:
+  enabled: true
+  # 단일 페이지 내 차트+표가 2종 이상이어야 보존
+  min_chart_table_types: 2
+  # PyMuPDF 분석 시 판별 기준
+  detection:
+    # 표(table) 판별: 셀 구조의 라인이 일정 수 이상
+    table_indicators:
+      - "\\|.*\\|.*\\|"           # 파이프 구분 텍스트 테이블
+      - "<table"                   # 내장 HTML 테이블
+      - "\\d+\\s+\\d+\\s+\\d+"    # 숫자 행렬 패턴
+    min_table_lines: 3
+    # 차트 판별: 페이지 내 이미지 중 일정 크기 이상
+    chart_min_width: 200
+    chart_min_height: 150
+    # 결합 조건: 한 페이지에 (table >= 1 AND chart_image >= 1) 이면 2종 충족

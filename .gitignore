@@ -1,0 +1,21 @@
+# Python runtime
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environments
+.env
+.venv
+venv/
+env/
+
+# IDE and OS
+.vscode/
+.idea/
+.DS_Store
+
+# Logs and outputs
+*.log
+downloads/
+pagination_test_results/
