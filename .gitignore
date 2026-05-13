@@ -1,0 +1,22 @@
+# AWS 인증 정보 (절대 커밋 금지)
+AWS_DOWNLOAD/aws_tool_settings.json
+
+# Python 캐시
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# 가상환경
+venv/
+.venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+
+# 기타
+*.log
+.DS_Store

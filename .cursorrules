@@ -1,0 +1,81 @@
+# .cursorrules
+
+## 스택
+Python 3.10+, PyQt5, 파일당 <1000줄
+결합도는 낮고, 응집도는 높도록 코딩할 것 
+
+## ASK 모드
+ASK 모드에서는 plan 만 제시하고, 코드 제시는 하지말 것. 
+코드 작성은 agent 모드에서만 수행행
+
+
+## 컨벤션
+snake_case, 타입힌트 필수, 한국어 주석
+
+## 입력 JSON
+- shape["flags"]["text"]에 텍스트
+- 문제번호: shape["flags"]["문제번호"] 필드 (없으면 독립 문제 아님 → 직전 문제에 병합)
+- 선지번호: shape["flags"]["선지"] (①②③④…)
+- labels: QUESTION/OPTION(문제), EXPLAIN/ANSWER(해설), TITLE/TEXT/TABLE(비문제)
+
+## QA Set
+number, question, options(dict), answer, explanation, pages
+
+**→ 상세 스펙은 Notepad에 분리.** 필요할 때만 `@notepad`로 호출.
+
+---
+
+### 2. 모델 사용 전략
+
+| 작업 유형 | 모델 | 이유 |
+|----------|------|------|
+| **보일러플레이트** | Fast | 구조 잡기, 반복 코드 |
+| **데이터 클래스** | Fast | 단순 구조체 |
+| **파싱 로직** | Opus | 정규식, 엣지케이스 처리 |
+| **복잡한 UI** | Opus | 시그널/슬롯, 레이아웃 |
+| **버그 수정** | Opus | 맥락 이해 필요 |
+| **리팩토링** | Fast | 기계적 변환 |
+
+### 3. 작업 흐름
+```
+[Phase 1: Fast로 뼈대]
+"models/qa_set.py 데이터클래스 만들어줘" → Fast
+"widgets/main_window.py 빈 레이아웃 잡아줘" → Fast
+
+[Phase 2: Opus로 핵심 로직]
+"@json-sample 보고 json_parser.py 파싱 로직" → Opus
+"matcher.py 자동 매칭 알고리즘" → Opus
+
+[Phase 3: Fast로 마무리]
+"docstring 추가해줘" → Fast
+"에러 핸들링 추가해줘" → Fast
+```
+주의! 명령되지 않은 READMD.md 파일은 절대로 생성하지 말 것 
+
+### 4. 히스토리 관리
+```
+❌ 한 채팅에서 계속 작업 (히스토리 누적 → 입력 토큰 폭증)
+
+✅ 모듈 단위로 새 채팅 시작
+   - qa_set.py 완료 → 새 채팅
+   - json_parser.py 완료 → 새 채팅
+```
+
+### 5. 출력 토큰 줄이기
+```
+❌ "main_window.py 전체 코드 작성해줘"
+
+✅ "main_window.py의 __init__과 레이아웃 메서드만"
+   → 다음 턴에 "이어서 이벤트 핸들러 추가"
+```
+
+---
+
+## 최종 권장 구조
+```
+.cursorrules     → 10줄 이내 핵심만
+notepads/
+  @json-sample   → JSON 예시 (필요시 호출)
+  @ui-spec       → UI 상세 (필요시 호출)
+  @qa-structure  → QA Set 상세 (필요시 호출)
+```
