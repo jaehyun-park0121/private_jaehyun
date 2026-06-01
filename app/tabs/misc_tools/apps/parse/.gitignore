@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Tool caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Generated parser outputs
+파싱본/
+sample/파싱본/
+
+# Local logs
+*.log
+
+# Keep only documented sample files
+sample/**
+!sample/infranet.json
+!sample/parsed.json
+!sample/2070_Latex 카테고리.xlsx
+!sample/{프로젝트}_총괄시트의 사본.xlsx

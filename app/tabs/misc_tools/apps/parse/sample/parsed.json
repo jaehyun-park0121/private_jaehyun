@@ -1,0 +1,50 @@
+{
+    "work_id": "{고유ID}",
+    "title": "{파일명}",
+    "identifiers": {
+	    "isbn": "{도서 ISBN}"
+    },
+    "source_format": "{pdf, epub, paper 등 원본 포맷 기입}",
+    "category_1": "{도서정보 대분류 등}",
+    "category_2": "{도서정보 중분류 등}",
+    "category_3": "{도서정보 소분류 등}",
+    "author": "{저자}",
+    "publisher": "{출판사}",
+    "published_date": "yyyy-mm-dd",
+    "contents": [
+        {
+            "page": "",
+            "chapter": "",
+            "page_contents": "<본문1>\n<본문2>\n<본문3>\n{{type}_{work_id}_{페이지번호(dddd)}_{태그별순서(dddd)}}...",
+            "add_info": [
+                {
+                    "tag": "{{type}_{work_id}_{페이지번호(dddd)}_{태그별순서(dddd)}}",
+                    "type": "{type}",
+                    "description": {
+                        "value": ""
+                    },
+                    "caption": "이미지1. 캡션",
+                    "file_path": "{work_id}/crop/{label}/{tag}.png"
+                },
+                {
+                    "tag": "{item_SS0001_0012_0002}",
+                    "type": "item",
+                    "description": {
+	                    "value": "빗면의 기울기에 따른 수직항력을 나타내면 다음과 같다.\n(a)\n{image_SS0001_0012_0006}\n(b)\n이미지 생략"
+	                  },
+                    "caption": "도표1 기울기에 따른 수직항력",
+                    "file_path": "SS0001/crop/item/{item_SS0001_0012_0002}.png"
+                },
+                {
+                    "tag": "{image_SS0001_0012_0006}",
+                    "type": "image",
+                    "description": {
+	                    "value": ""
+                    },
+                    "caption": "낮은 경사를 가지는 경우",
+                    "file_path": "SS0001/crop/image/{image_SS0001_0012_0006}.png"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,8 @@
+.venv/
+.venv-1/
+code/.venv/
+code/.venv-1/
+code/.install.log
+__pycache__/
+**/__pycache__/
+*.py[cod]

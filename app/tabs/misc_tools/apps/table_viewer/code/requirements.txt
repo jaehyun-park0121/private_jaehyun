@@ -1,0 +1,4 @@
+PyQt6>=6.5,<6.11
+PyQt6-WebEngine>=6.5,<6.11
+boto3>=1.26.0
+paramiko>=3.4.0

@@ -1,0 +1,27 @@
+{
+  "enabled": true,
+  "field_validation_enabled": true,
+  "tag_count_check": true,
+  "fields": {
+    "work_id": 1,
+    "title": 1,
+    "identifiers.isbn": 1,
+    "source_format": 1,
+    "category_1": 1,
+    "category_2": 1,
+    "category_3": 1,
+    "author": 1,
+    "publisher": 1,
+    "published_date": 1,
+    "contents": 1,
+    "contents[].page": 1,
+    "contents[].chapter": 1,
+    "contents[].page_contents": 1,
+    "contents[].add_info": 1,
+    "contents[].add_info[].tag": 1,
+    "contents[].add_info[].type": 1,
+    "contents[].add_info[].description.value": 1,
+    "contents[].add_info[].caption": 1,
+    "contents[].add_info[].file_path": 1
+  }
+}

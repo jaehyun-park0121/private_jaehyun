@@ -1,0 +1,16 @@
+project:
+  id: your_project_id
+  s3_path: s3://your-bucket/your-prefix/
+  output_path: ./outputs
+  cache_path: ./.cache
+aws:
+  access_key: ''
+  secret_key: ''
+  session_token: ''
+  region: ap-northeast-2
+  default_bucket: your-bucket
+  default_prefix: your-prefix/
+checks:
+  noise_char_check:
+    banned_chars:
+    - "\uFEFF"

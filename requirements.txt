@@ -1,0 +1,7 @@
+PyQt5
+PyYAML
+boto3
+gspread
+regex
+openpyxl
+Pillow

@@ -1,0 +1,37 @@
+{
+    "version": "4.0.0",
+    "flags": {},
+    "shapes": [
+      {
+        "label": "TEXT",
+        "points": [
+          [313.0, 329.36900369003695],
+          [191.0, 107.36900369003689]
+        ],
+        "is_problem": true,
+        "problem_reason": "확인 필요 체크 사유 기입",
+        "group_id": null,
+        "shape_type": "rectangle",
+        "result": null,
+        "failedReason": null,
+        "flags": {
+            "text": "해당 박스의 실제 값"
+        },
+        "attributes": null
+      },
+      {
+        "label": "TEXT",
+        "points": [
+          [365.0, 83.0],
+          [500.0, 333.0]
+        ],
+        "group_id": null,
+        "shape_type": "rectangle",
+        "flags": {}
+      }
+    ],
+    "imagePath": "",
+    "imageData": null,
+    "imageHeight": 2480,
+    "imageWidth": 3505
+}

@@ -1,0 +1,51 @@
+# Common ignore rules for the whole repository.
+# Folder-local rules live in:
+# - config/.gitignore
+# - app/tabs/raw_data_analysis/.gitignore
+# - app/tabs/misc_tools/apps/parse/.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+*.so
+.Python
+*.egg
+*.egg-info/
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Tool caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Generated workspace data
+.cache/
+outputs/
+dummy/
+
+# IDE / editor
+.idea/
+.vscode/
+.claude/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment / secrets
+.env
+.env.local
+*.key
+*.pem
+.auth/
+credentials.json

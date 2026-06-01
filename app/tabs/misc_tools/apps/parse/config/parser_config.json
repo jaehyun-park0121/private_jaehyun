@@ -1,0 +1,118 @@
+{
+  "paths": {
+    "input_root": "../sample/파싱전",
+    "output_root": "../sample/파싱본"
+  },
+  "excel": {
+    "workbook_path": "../sample/파싱 테스트용.xlsx",
+    "sheet_name": "2. 도서 정보",
+    "header_row": 2,
+    "columns": {
+      "work_id": "ID",
+      "title": "도서명",
+      "isbn": "ISBN",
+      "source_format": "포맷",
+      "category_1": "분류1",
+      "category_2": "분류2",
+      "category_3": "분류3",
+      "author": "저자",
+      "publisher": "출판사",
+      "published_date": "출판일"
+    }
+  },
+  "schema": {
+    "top_level_shapes_key": "shapes",
+    "required_shape_fields": [
+      "label",
+      "points",
+      "flags",
+      "flags.text"
+    ],
+    "strict_required_fields": true,
+    "stop_on_validation_error": true
+  },
+  "parser": {
+    "page_number_pattern": "_(\\d{4})$",
+    "crop_dir_template": "./crop/{label}",
+    "output_indent": 2,
+    "export_pages": true
+  },
+  "execution": {
+    "parallel_enabled": true,
+    "max_workers": 4
+  },
+  "labels": {
+    "TEXT": {
+      "type": "text",
+      "use_in_contents": "text",
+      "marker": "",
+      "crop": false,
+      "description_mode": "none",
+      "chapter_source": false
+    },
+    "TITLE": {
+      "type": "title",
+      "use_in_contents": "text",
+      "marker": "",
+      "crop": false,
+      "description_mode": "none",
+      "chapter_source": true
+    },
+    "CAPTION": {
+      "type": "caption",
+      "use_in_contents": "text",
+      "marker": "",
+      "crop": false,
+      "description_mode": "none",
+      "chapter_source": false
+    },
+    "IMAGE": {
+      "type": "image",
+      "use_in_contents": "tag",
+      "marker": "{im}",
+      "crop": true,
+      "description_mode": "flags_text",
+      "chapter_source": false
+    },
+    "FORMULA": {
+      "type": "formula",
+      "use_in_contents": "tag",
+      "marker": "{fr}",
+      "crop": false,
+      "description_mode": "flags_text",
+      "chapter_source": false
+    },
+    "TABLE": {
+      "type": "table",
+      "use_in_contents": "tag",
+      "marker": "{tb}",
+      "crop": false,
+      "description_mode": "flags_text",
+      "chapter_source": false
+    },
+    "CHART": {
+      "type": "chart",
+      "use_in_contents": "tag",
+      "marker": "{ch}",
+      "crop": true,
+      "description_mode": "flags_text",
+      "chapter_source": false
+    },
+    "ITEM": {
+      "type": "item",
+      "use_in_contents": "tag",
+      "marker": "{em}",
+      "crop": true,
+      "description_mode": "children_rendered",
+      "chapter_source": false
+    },
+    "FOOTNOTE": {
+      "type": "footnote",
+      "use_in_contents": "tag",
+      "marker": "{fn}",
+      "crop": false,
+      "description_mode": "flags_text",
+      "chapter_source": false
+    }
+  }
+}

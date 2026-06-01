@@ -1,0 +1,6 @@
+# Local OAuth / spreadsheet credentials
+# client_secret*.json
+
+# Local exports and scratch data
+output/
+json_sample/
