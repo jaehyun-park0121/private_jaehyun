@@ -1,0 +1,30 @@
+[
+  {
+    "date": "2026-06-12",
+    "title": "1 cycle 납품",
+    "type": "delivery",
+    "memo": "",
+    "id": "cbdf331e"
+  },
+  {
+    "date": "2026-07-06",
+    "title": "외부데이터 최종 납품",
+    "type": "delivery",
+    "memo": "",
+    "id": "59f63418"
+  },
+  {
+    "date": "2026-06-04",
+    "title": "외부 데이터 파견 작업자 구인",
+    "type": "recruitment",
+    "memo": "",
+    "id": "6b298ff7"
+  },
+  {
+    "date": "2026-06-02",
+    "title": "2 Cycle 데이터 수령",
+    "type": "milestone",
+    "memo": "",
+    "id": "e507ba41"
+  }
+]

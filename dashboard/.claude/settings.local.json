@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(test:*)",
+      "Bash(python:*)",
+      "Bash(echo:*)",
+      "Bash(set DATA_SOURCE=gsheet)",
+      "Bash(set GSHEET_URL=https://docs.google.com/spreadsheets/d/14ZqesPkXUBiCXYkYctsQysh3_qgWstzNk11_gryOLWw/edit:*)",
+      "Bash(timeout:*)"
+    ]
+  }
+}
